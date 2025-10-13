@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mimi Moons — The Cutest Coin in the Cosmos</title>
+  <meta name="description" content="Mimi Moons: Shine cute. Pump hard. The cutest coin in the cosmos.">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a16;
+      --accent: #d5b465;
+      --accent-dark: #8b6b2d;
+      --white: #f5f5f5;
+      --muted: #9aa2b2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--white);
+      background: radial-gradient(circle at 70% 10%, #1a1b3a 0%, var(--bg) 60%), var(--bg);
+      overflow-x: hidden;
+    }
+    header { text-align: center; padding: 40px 20px; }
+    header img { width: 180px; border-radius: 50%; box-shadow: 0 0 50px rgba(213,180,101,0.4); }
+    h1 { font-size: clamp(32px, 5vw, 56px); margin-top: 20px; font-weight: 800; }
+    h1 span { color: var(--accent); }
+    p { color: var(--muted); line-height: 1.6; max-width: 700px; margin: 0 auto; font-size: 18px; }
+    section { padding: 80px 20px; text-align: center; }
+    h2 { font-size: 32px; margin-bottom: 20px; color: var(--accent); }
+    .tokenomics, .roadmap, .socials { max-width: 900px; margin: 0 auto; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .card h3 { color: var(--accent); margin-bottom: 10px; }
+    footer { text-align: center; padding: 40px 0; font-size: 14px; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.1); }
+    a { color: var(--accent); text-decoration: none; }
+    .social-links { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+    .social-links a { background: rgba(255,255,255,0.05); padding: 10px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); transition: 0.2s; }
+    .social-links a:hover { background: rgba(213,180,101,0.15); }
+    @keyframes glow {
+      0% { box-shadow: 0 0 20px rgba(213,180,101,0.4); }
+      50% { box-shadow: 0 0 40px rgba(213,180,101,0.8); }
+      100% { box-shadow: 0 0 20px rgba(213,180,101,0.4); }
+    }
+    .logo-glow img { animation: glow 3s infinite ease-in-out; }
+  </style>
+</head>
+<body>
+  <header class="logo-glow">
+    <img src="mimi-moons-logo.png" alt="Mimi Moons Logo">
+    <h1>The Cutest Coin in the <span>Cosmos</span></h1>
+    <p>Shine cute. Pump hard. We don’t chase the moon — we <em>are</em> the moon. 🚀🌙</p>
+  </header>
+  <section id="about">
+    <h2>About Mimi Moons</h2>
+    <p>Born on the dark side of the moon, Mimi is the glowing cosmic mascot of a new degen generation. Combining cuteness with interstellar energy, Mimi Moons stands for creativity, fun, and community-driven success across the Solana galaxy.</p>
+  </section>
+  <section id="tokenomics">
+    <h2>Tokenomics</h2>
+    <div class="tokenomics grid">
+      <div class="card"><h3>Total Supply</h3><p>1,000,000,000</p></div>
+      <div class="card"><h3>Tax</h3><p>0 / 0</p></div>
+      <div class="card"><h3>Liquidity</h3><p>Locked</p></div>
+      <div class="card"><h3>Chain</h3><p>Solana (SOL)</p></div>
+    </div>
+  </section>
+  <section id="roadmap">
+    <h2>Roadmap</h2>
+    <div class="roadmap grid">
+      <div class="card"><h3>Phase 1 — Launch</h3><p>Launch on Pump.fun and start building the cosmic community.</p></div>
+      <div class="card"><h3>Phase 2 — Growth</h3><p>Twitter & Telegram expansion, meme contests, and early partnerships.</p></div>
+      <div class="card"><h3>Phase 3 — Expansion</h3><p>Exclusive NFT collection, mini-game, and Mimi Moons merchandise drop.</p></div>
+    </div>
+  </section>
+  <section id="socials">
+    <h2>Connect with Mimi</h2>
+    <p>Follow us across the galaxy and join the Mimi Moons family.</p>
+    <div class="social-links">
+      <a href="#" target="_blank">Twitter / X</a>
+      <a href="#" target="_blank">Telegram</a>
+      <a href="#" target="_blank">Pump.fun</a>
+    </div>
+  </section>
+  <footer>
+    © 2025 Mimi Moons. Shine cute. Pump hard.
+  </footer>
+</body>
+</html>
