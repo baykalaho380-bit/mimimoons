@@ -4,23 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MimiMoons — The Cutest Coin in the Cosmos</title>
-  <meta name="description" content="MimiMoons: a luxury, futuristic meme coin launching on Solana. Shine cute. Pump hard.">
+  <meta name="description" content="MimiMoons: luxury, futuristic meme coin on Solana. Shine cute. Pump hard.">
   <meta property="og:title" content="MimiMoons — The Cutest Coin in the Cosmos">
-  <meta property="og:description" content="The luxury, futuristic meme coin on Solana.">
+  <meta property="og:description" content="Luxury, futuristic meme coin on Solana.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="logo.svg">
+  <meta property="og:image" content="logo.png">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <!-- Animated starfield -->
-  <canvas id="stars" aria-hidden="true"></canvas>
+  <!-- 3D Starfield -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
 
   <!-- NAV -->
   <nav class="nav">
     <a href="#home" class="brand">
-      <img src="logo.svg" alt="" class="nav-logo" />
+      <img src="logo.png" onerror="this.src='logo.svg';" alt="" class="nav-logo" />
       MimiMoons
     </a>
     <input type="checkbox" id="menu-toggle" hidden>
@@ -37,14 +37,15 @@
   <!-- HERO -->
   <header id="home" class="hero" role="banner">
     <div class="hero-logo-wrap">
-      <img src="logo.svg" alt="MimiMoons Logo" class="hero-logo" />
+      <img src="logo.png" onerror="this.src='logo.svg';" alt="MimiMoons Logo" class="hero-logo" />
       <div class="ring r1"></div>
       <div class="ring r2"></div>
       <div class="ring r3"></div>
     </div>
     <h1 class="headline">
-      MimiMoons: <span>The Starlight Companion on Your Journey to the Moon!</span>
+      MimiMoons — <span>The Cutest Coin in the Cosmos</span>
     </h1>
+    <p class="tag">Shine cute. Pump hard. We don’t chase the moon — <b>we are the moon.</b></p>
 
     <div class="cta">
       <a class="btn" href="#" target="_blank" rel="noopener">Buy Now!</a>
@@ -163,6 +164,6 @@
     <div>© 2025 MimiMoons — The Cutest Coin in the Cosmos • All rights reserved.</div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
