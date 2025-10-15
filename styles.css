@@ -1,0 +1,110 @@
+/* MimiMoons — Global Luxury/Futuristic One-Page with 3D Stars */
+:root{
+  --bg:#0b0f2b;
+  --bg2:#0a0d24;
+  --accent:#d5b465;
+  --accent-soft:rgba(213,180,101,.18);
+  --text:#ffffff;
+  --muted:#aab0c2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background: radial-gradient(1200px 800px at 70% -10%, #1a1c49 0%, rgba(26,28,73,0) 60%),
+              linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  overflow-x:hidden;
+}
+
+/* 3D starfield canvas */
+#starfield{position:fixed; inset:0; z-index:0; background:transparent}
+
+/* NAV */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:3;
+  display:flex; align-items:center; gap:16px; padding:14px 18px;
+  background:linear-gradient(180deg, rgba(8,10,20,.72), rgba(8,10,20,0));
+  backdrop-filter: blur(6px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.brand{font-family: Orbitron, sans-serif; font-weight:800; letter-spacing:.8px; display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text)}
+.nav-logo{width:26px; height:26px; border-radius:8px; object-fit:cover}
+.links{margin-left:auto; display:flex; align-items:center; gap:18px}
+.links a{color:var(--text); text-decoration:none; opacity:.9}
+.links a:hover{opacity:1}
+#menu-toggle + .burger{display:none}
+.burger span, .burger::before, .burger::after{content:""; display:block; width:22px; height:2px; background:#fff; margin:5px 0}
+.btn{
+  appearance:none; border:none; cursor:pointer;
+  padding:12px 18px; border-radius:14px; font-weight:700; font-size:15px;
+  color:#0b0e1c; background:linear-gradient(90deg, #d5b465, #f8e7b1);
+  text-decoration:none; box-shadow:0 10px 26px rgba(213,180,101,.28);
+  transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.btn:hover{transform:translateY(-2px); box-shadow:0 18px 42px rgba(213,180,101,.4); filter:saturate(115%)}
+.btn.ghost{background:transparent; color:var(--text); border:1px solid var(--accent-soft)}
+.btn.small{padding:8px 12px; font-size:13px}
+
+/* HERO */
+.hero{
+  position:relative; z-index:1; text-align:center;
+  padding:120px 18px 56px; min-height:94vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px
+}
+.hero-logo-wrap{position:relative; display:inline-block}
+.hero-logo{width:min(260px,60vw); height:auto; border-radius:24px; filter:drop-shadow(0 10px 40px rgba(213,180,101,.35)); animation:float 5.2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ring{position:absolute; inset:0; border-radius:999px; border:2px solid var(--accent); opacity:.45; filter:blur(1px)}
+.r1{transform:scale(1.18); animation:pulse 2.8s ease-in-out infinite}
+.r2{transform:scale(1.36); opacity:.25; animation:pulse 3.8s ease-in-out infinite}
+.r3{transform:scale(1.55); opacity:.18; animation:pulse 4.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--accent-soft)}50%{box-shadow:0 0 30px 10px var(--accent-soft)}}
+
+.headline{font-family: Orbitron, sans-serif; font-weight:800; letter-spacing:.8px; font-size: clamp(26px, 5.8vw, 46px)}
+.headline span{color:var(--accent); text-shadow:0 0 22px var(--accent-soft)}
+.tag{color:var(--muted); max-width:900px; margin:0 auto 6px}
+
+.cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+.contract{
+  display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap:wrap;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+  padding:10px 12px; border-radius:12px; font-family: Inter, sans-serif;
+}
+.contract code{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:14px; letter-spacing:.3px; background:rgba(0,0,0,.25); padding:6px 8px; border-radius:8px}
+.copy{padding:8px 10px; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,.16); color:#fff; cursor:pointer}
+.copied{opacity:0; transition:opacity .2s ease; font-size:12px; color:#8de68e}
+
+/* SECTION BASE */
+.section{position:relative; z-index:1; padding:74px 18px; text-align:center}
+.section.alt{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05)}
+.section h2{font-family: Orbitron, sans-serif; font-weight:800; color:var(--accent); font-size:clamp(22px,4.5vw,34px); margin-bottom:18px}
+.section p{color:var(--muted)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; max-width:1100px; margin:0 auto}
+.card{background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; box-shadow:0 10px 26px rgba(0,0,0,.25)}
+.card h3{margin:6px 0 6px; color:var(--accent)}
+.card .icon{font-size:22px; margin-bottom:6px}
+
+/* Tokenomics row */
+.tok-row{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; max-width:1100px; margin:0 auto}
+.tok{position:relative; display:flex; gap:12px; align-items:center; justify-content:center; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px}
+.tok-ring{width:14px; height:14px; border-radius:999px; border:2px solid var(--accent); box-shadow:0 0 12px var(--accent-soft)}
+.tok-text h4{color:var(--accent); margin-bottom:4px}
+
+/* Roadmap timeline */
+.timeline{max-width:1000px; margin:0 auto; text-align:left; position:relative; padding-left:24px}
+.timeline:before{content:""; position:absolute; left:10px; top:6px; bottom:6px; width:2px; background:rgba(255,255,255,.16)}
+.step{position:relative; margin:18px 0; padding-left:16px}
+.step .dot{position:absolute; left:-2px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 18px var(--accent)}
+
+/* Footer */
+.footer{position:relative; z-index:1; text-align:center; padding:40px 16px; color:#bfc5d8; font-size:13px; border-top:1px solid rgba(255,255,255,.08)}
+
+/* Responsive */
+@media (max-width:860px){
+  #menu-toggle + .burger{display:block}
+  .links{display:none; position:fixed; right:18px; top:56px; background:rgba(8,10,20,.92); padding:14px; border:1px solid rgba(255,255,255,.08); border-radius:14px; flex-direction:column; gap:10px}
+  #menu-toggle:checked ~ .links{display:flex}
+}
