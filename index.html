@@ -4,164 +4,123 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MimiMoons — The Cutest Coin in the Cosmos</title>
-  <meta name="description" content="MimiMoons: luxury, futuristic meme coin on Solana. Shine cute. Pump hard.">
-  <meta property="og:title" content="MimiMoons — The Cutest Coin in the Cosmos">
-  <meta property="og:description" content="Luxury, futuristic meme coin on Solana.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="logo.png">
+  <meta name="description" content="MimiMoons: Luxury, futuristic, and fast — the cutest coin in the cosmos. 0/0 tax, community-first, built on Solana Pump.fun." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <!-- 3D Starfield -->
-  <canvas id="starfield" aria-hidden="true"></canvas>
+  <!-- Starfield -->
+  <canvas id="stars" aria-hidden="true"></canvas>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="#home" class="brand">
-      <img src="logo.png" onerror="this.src='logo.svg';" alt="" class="nav-logo" />
-      MimiMoons
-    </a>
-    <input type="checkbox" id="menu-toggle" hidden>
-    <label for="menu-toggle" class="burger" aria-label="Open menu"><span></span></label>
-    <div class="links">
+  <header class="nav">
+    <div class="nav__brand">
+      <img class="brand__logo" src="logo.svg" alt="Mimi Moons Logo" onerror="this.style.display='none'">
+      <span class="brand__title">MimiMoons</span>
+    </div>
+    <nav class="nav__links">
       <a href="#why">Why</a>
       <a href="#tokenomics">Tokenomics</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#community">Community</a>
-      <a class="btn small" href="#" target="_blank" rel="noopener">Buy</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header id="home" class="hero" role="banner">
-    <div class="hero-logo-wrap">
-      <img src="logo.png" onerror="this.src='logo.svg';" alt="MimiMoons Logo" class="hero-logo" />
-      <div class="ring r1"></div>
-      <div class="ring r2"></div>
-      <div class="ring r3"></div>
-    </div>
-    <h1 class="headline">
-      MimiMoons — <span>The Cutest Coin in the Cosmos</span>
-    </h1>
-    <p class="tag">Shine cute. Pump hard. We don’t chase the moon — <b>we are the moon.</b></p>
-
-    <div class="cta">
-      <a class="btn" href="#" target="_blank" rel="noopener">Buy Now!</a>
-      <a class="btn ghost" href="#" target="_blank" rel="noopener">Join Telegram</a>
-    </div>
-
-    <div class="contract">
-      <span>Pump.fun Contract:</span>
-      <code id="contractText">So11111111111111111111111111111111111111112</code>
-      <button class="copy" id="copyBtn" aria-label="Copy contract">📋 Copy</button>
-      <span class="copied" id="copiedToast" role="status" aria-live="polite">Copied!</span>
-    </div>
+    </nav>
   </header>
 
-  <!-- WHY -->
-  <section id="why" class="section">
-    <h2>Why MimiMoons?</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">🚀</div>
-        <h3>Community First</h3>
-        <p>Organic growth, meme power, and a builder‑core that never sleeps.</p>
-      </div>
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Lightning Fast</h3>
-        <p>Powered by Solana — ultra‑low fees and near‑instant finality.</p>
-      </div>
-      <div class="card">
-        <div class="icon">💰</div>
-        <h3>Zero Tax</h3>
-        <p>Fair launch, 0 / 0 forever. No hidden fees, no surprises.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🌌</div>
-        <h3>Cosmic Branding</h3>
-        <p>Luxury gold accents, futuristic visuals, and a memorable mascot.</p>
-      </div>
-    </div>
-  </section>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__content">
+        <div class="hero__logoWrap">
+          <img src="logo.svg" class="hero__logo" alt="Mimi Moons Mascot">
+          <div class="hero__rings" aria-hidden="true"></div>
+        </div>
+        <h1 class="hero__title"><span>MimiMoons</span> — The Cutest Coin in the Cosmos</h1>
+        <p class="hero__tag">Shine cute. Pump hard. We don’t chase the moon — <strong>we are</strong> the moon. 🚀🌙</p>
 
-  <!-- TOKENOMICS -->
-  <section id="tokenomics" class="section alt">
-    <h2>Tokenomics</h2>
-    <div class="tok-row">
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Total Supply</h4>
-          <p>1,000,000,000 MIMI</p>
+        <div class="cta-buttons">
+          <!-- BUY NOW -> Pump.fun direct -->
+          <a id="buyNow" class="btn btn--gold" href="https://pump.fun/" target="_blank" rel="noopener">Buy Now!</a>
+          <a class="btn btn--outline" href="https://t.me/" target="_blank" rel="noopener">Join Telegram</a>
         </div>
-      </div>
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Tax</h4>
-          <p>0 / 0</p>
-        </div>
-      </div>
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Network</h4>
-          <p>Solana (Pump.fun)</p>
-        </div>
-      </div>
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Liquidity</h4>
-          <p>Locked 🔒</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ROADMAP -->
-  <section id="roadmap" class="section">
-    <h2>The Moon Journey</h2>
-    <div class="timeline">
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Launch Prep</h4>
-        <p>Coin launch, website live, social channels opened.</p>
+        <!-- CONTRACT -->
+        <div class="contract">
+          <span class="contract__label">Pump.fun Contract:</span>
+          <code id="contractText">So11111111111111111111111111111111111111112</code>
+          <button class="copy" id="copyBtn" type="button" aria-label="Copy contract">Copy</button>
+        </div>
       </div>
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Atmospheric Entry</h4>
-        <p>Meme missions, creator collabs, early listings.</p>
-      </div>
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Lunar Landing</h4>
-        <p>NFT mini‑drop, partnerships, influencer pushes.</p>
-      </div>
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Beyond the Moon</h4>
-        <p>Ecosystem expansion, quests, and utilities.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- COMMUNITY -->
-  <section id="community" class="section alt">
-    <h2>Community</h2>
-    <p class="sub">Memes, missions and moonshots — be early, be cute.</p>
-    <div class="cta social">
-      <a class="btn" href="#" target="_blank" rel="noopener">Pump.fun</a>
-      <a class="btn ghost" href="#" target="_blank" rel="noopener">Twitter / X</a>
-      <a class="btn ghost" href="#" target="_blank" rel="noopener">Telegram</a>
-    </div>
-  </section>
+    <!-- WHY -->
+    <section id="why" class="section section--why">
+      <h2 class="section__title">Why MimiMoons?</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Community Power</h3>
+          <p>Driven by a global, meme-fueled community with good vibes and relentless energy.</p>
+        </div>
+        <div class="card">
+          <h3>Instant &amp; Fast</h3>
+          <p>Lightning-fast experience on Solana — smooth, cheap and built to scale.</p>
+        </div>
+        <div class="card">
+          <h3>0/0 Tax</h3>
+          <p>Transparent tokenomics: zero buy tax, zero sell tax. What you trade is what you get.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOKENOMICS -->
+    <section id="tokenomics" class="section">
+      <h2 class="section__title">Tokenomics</h2>
+      <div class="tokenomics">
+        <div class="tok__item"><span>Total Supply</span><strong>1,000,000,000</strong></div>
+        <div class="tok__item"><span>Taxes</span><strong>0% / 0%</strong></div>
+        <div class="tok__item"><span>Network</span><strong>Solana (Pump.fun)</strong></div>
+        <div class="tok__item"><span>Liquidity</span><strong>Locked 🔒</strong></div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="section">
+      <h2 class="section__title">The Moon Journey</h2>
+      <div class="timeline">
+        <div class="step">
+          <h4>Launch Prep</h4>
+          <p>Coin launch, website live, social channels opened.</p>
+        </div>
+        <div class="step">
+          <h4>Atmospheric Entry</h4>
+          <p>Meme missions, creator collabs, early listings.</p>
+        </div>
+        <div class="step">
+          <h4>Lunar Landing</h4>
+          <p>NFT mini-drop, partnerships, influencer pushes.</p>
+        </div>
+        <div class="step">
+          <h4>Beyond the Moon</h4>
+          <p>Ecosystem expansion, quests, and utilities.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section id="community" class="section">
+      <h2 class="section__title">Community</h2>
+      <p class="section__lead">Memes, missions and moonshots — be early, be cute.</p>
+      <div class="socials">
+        <a class="social" href="https://pump.fun/" target="_blank" rel="noopener">Pump.fun</a>
+        <a class="social" href="https://x.com" target="_blank" rel="noopener">Twitter / X</a>
+        <a class="social" href="https://t.me" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
-    <div>© 2025 MimiMoons — The Cutest Coin in the Cosmos • All rights reserved.</div>
+    <small>© 2025 MimiMoons — The Cutest Coin in the Cosmos • All rights reserved.</small>
   </footer>
 
   <script src="./script.js"></script>
