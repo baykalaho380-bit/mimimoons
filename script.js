@@ -1,58 +1,65 @@
-// Starfield with 3D parallax + mobile optimization
-const cvs = document.getElementById('stars');
-const ctx = cvs.getContext('2d', { alpha: true });
-let w, h, stars = [];
-let tiltX = 0, tiltY = 0, t = 0;
+// 3D Starfield with perspective + copy-to-clipboard
+const cv = document.getElementById('starfield');
+const cx = cv.getContext('2d');
+let W, H;
+let stars = [];
+let perspective = 400;  // lower = stronger depth
+let speed = 0.4;        // base forward speed
+let mouseX = 0, mouseY = 0;
 
 function resize(){
-  w = cvs.width = window.innerWidth * devicePixelRatio;
-  h = cvs.height = window.innerHeight * devicePixelRatio;
-  cvs.style.width = window.innerWidth + 'px';
-  cvs.style.height = window.innerHeight + 'px';
-
-  const base = Math.floor((window.innerWidth * window.innerHeight) / 9000);
-  const count = Math.min(400, Math.max(90, base)); // mobile-safe
+  W = cv.width = window.innerWidth;
+  H = cv.height = window.innerHeight;
+  const count = Math.min(800, Math.floor((W*H)/2500)); // number of stars based on area
   stars = Array.from({length: count}, () => ({
-    x: Math.random()*w,
-    y: Math.random()*h,
-    z: Math.random()*0.9 + 0.1, // depth
-    s: Math.random()*1.2 + 0.3,  // size
-    spd: Math.random()*0.6 + 0.2 // speed
+    x: (Math.random()*2 - 1) * W,
+    y: (Math.random()*2 - 1) * H,
+    z: Math.random()*1000 + 100,
+    r: Math.random()*1.5 + 0.5,
+    a: Math.random()*0.6 + 0.3
   }));
 }
-resize();
 window.addEventListener('resize', resize);
+resize();
 
-// Parallax from pointer
-function handleMove(e){
-  const cx = (e.touches ? e.touches[0].clientX : e.clientX) - window.innerWidth/2;
-  const cy = (e.touches ? e.touches[0].clientY : e.clientY) - window.innerHeight/2;
-  tiltX = cx / (window.innerWidth/2);
-  tiltY = cy / (window.innerHeight/2);
-}
-window.addEventListener('mousemove', handleMove, {passive:true});
-window.addEventListener('touchmove', handleMove, {passive:true});
+window.addEventListener('mousemove', (e)=>{
+  // mouse offset for parallax
+  mouseX = (e.clientX / W - 0.5) * 2; // -1..1
+  mouseY = (e.clientY / H - 0.5) * 2;
+});
 
 function draw(){
-  t += 0.016;
-  // radial night glow
-  ctx.clearRect(0,0,w,h);
-  const rg = ctx.createRadialGradient(w*0.5, h*0.1, 0, w*0.5, h*0.1, Math.max(w,h)*0.9);
-  rg.addColorStop(0, 'rgba(10,25,60,.45)');
-  rg.addColorStop(1, 'rgba(8,13,31,1)');
-  ctx.fillStyle = rg;
-  ctx.fillRect(0,0,w,h);
+  cx.clearRect(0,0,W,H);
 
-  // stars
-  for(const s of stars){
-    const px = s.x + tiltX * (1.2 - s.z) * 30;
-    const py = s.y + tiltY * (1.2 - s.z) * 30 + t * s.spd * 18;
-    const y = (py % h);
-    ctx.globalAlpha = 0.7 + Math.sin((t*2 + s.x*0.0008))*0.3;
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(px, y, s.s * s.z * devicePixelRatio, 0, Math.PI*2);
-    ctx.fill();
+  // faint cosmic glow
+  const g = cx.createRadialGradient(W*0.7, H*0.2, 0, W*0.7, H*0.2, Math.max(W,H)*0.8);
+  g.addColorStop(0, 'rgba(26,28,73,0.25)');
+  g.addColorStop(1, 'rgba(26,28,73,0)');
+  cx.fillStyle = g;
+  cx.fillRect(0,0,W,H);
+
+  // starfield
+  cx.fillStyle = '#ffffff';
+  for (let s of stars){
+    s.z -= speed * 2; // move towards camera
+    if (s.z < 1){
+      s.x = (Math.random()*2 - 1) * W;
+      s.y = (Math.random()*2 - 1) * H;
+      s.z = 1000;
+    }
+
+    // perspective projection
+    const k = perspective / (s.z);
+    const px = W/2 + (s.x + mouseX*120) * k;
+    const py = H/2 + (s.y + mouseY*120) * k;
+    const pr = s.r * k * 2;
+
+    if (px < 0 || px > W || py < 0 || py > H) continue;
+
+    cx.globalAlpha = Math.min(1, s.a + (1 - s.z/1000)*0.5);
+    cx.beginPath();
+    cx.arc(px, py, pr, 0, Math.PI*2);
+    cx.fill();
   }
 
   requestAnimationFrame(draw);
@@ -60,12 +67,15 @@ function draw(){
 draw();
 
 // Copy contract
-document.getElementById('copyBtn')?.addEventListener('click', () => {
-  const text = document.getElementById('contractText').textContent.trim();
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('copyBtn');
-    const old = btn.textContent;
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = old, 1200);
+const copyBtn = document.getElementById('copyBtn');
+const contractText = document.getElementById('contractText');
+const copiedToast = document.getElementById('copiedToast');
+if (copyBtn){
+  copyBtn.addEventListener('click', async () => {
+    try{
+      await navigator.clipboard.writeText(contractText.textContent.trim());
+      copiedToast.style.opacity = 1;
+      setTimeout(()=> copiedToast.style.opacity = 0, 1200);
+    }catch(e){ alert('Copy failed'); }
   });
-});
+}
