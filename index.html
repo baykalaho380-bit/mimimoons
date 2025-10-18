@@ -1,169 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>MimiMoons — The Cutest Coin in the Cosmos</title>
-  <meta name="description" content="MimiMoons: luxury, futuristic meme coin on Solana. Shine cute. Pump hard.">
-  <meta property="og:title" content="MimiMoons — The Cutest Coin in the Cosmos">
-  <meta property="og:description" content="Luxury, futuristic meme coin on Solana.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="logo.png">
+  <meta name="description" content="MimiMoons — luxury, futuristic meme coin on Solana. 0/0 tax, LP locked. We are the moon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- 3D Starfield -->
-  <canvas id="starfield" aria-hidden="true"></canvas>
-
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="#home" class="brand">
-      <img src="logo.png" onerror="this.src='logo.svg';" alt="" class="nav-logo" />
-      MimiMoons
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <header class="nav">
+    <a class="brand" href="#">
+      <img src="logo.png" alt="MimiMoons Logo" class="brand__logo" />
+      <span class="brand__name">MimiMoons</span>
     </a>
-    <input type="checkbox" id="menu-toggle" hidden>
-    <label for="menu-toggle" class="burger" aria-label="Open menu"><span></span></label>
-    <div class="links">
+    <nav class="links">
       <a href="#why">Why</a>
       <a href="#tokenomics">Tokenomics</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#community">Community</a>
-      <a class="btn small" href="#" target="_blank" rel="noopener">Buy</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header id="home" class="hero" role="banner">
-    <div class="hero-logo-wrap">
-      <img src="logo.png" onerror="this.src='logo.svg';" alt="MimiMoons Logo" class="hero-logo" />
-      <div class="ring r1"></div>
-      <div class="ring r2"></div>
-      <div class="ring r3"></div>
-    </div>
-    <h1 class="headline">
-      MimiMoons — <span>The Cutest Coin in the Cosmos</span>
-    </h1>
-    <p class="tag">Shine cute. Pump hard. We don’t chase the moon — <b>we are the moon.</b></p>
-
-    <div class="cta">
-      <a class="btn" href="#" target="_blank" rel="noopener">Buy Now!</a>
-      <a class="btn ghost" href="#" target="_blank" rel="noopener">Join Telegram</a>
-    </div>
-
-    <div class="contract">
-      <span>Pump.fun Contract:</span>
-      <code id="contractText">So11111111111111111111111111111111111111112</code>
-      <button class="copy" id="copyBtn" aria-label="Copy contract">📋 Copy</button>
-      <span class="copied" id="copiedToast" role="status" aria-live="polite">Copied!</span>
-    </div>
+      <a id="buyTop" class="btn btn--sm" target="_blank" rel="noopener">Buy</a>
+    </nav>
   </header>
-
-  <!-- WHY -->
+  <section class="hero" id="home">
+    <div class="hero__art">
+      <div class="hero__glow"></div>
+      <img src="logo.png" class="hero__logo" alt="MimiMoons" />
+      <div class="hero__ring r1"></div>
+      <div class="hero__ring r2"></div>
+      <div class="hero__ring r3"></div>
+    </div>
+    <h1 class="hero__title"><span>MimiMoons</span> — The Cutest Coin in the Cosmos</h1>
+    <p class="hero__tag">Shine cute. Pump hard. We don’t chase the moon — <strong>we are</strong> the moon.</p>
+    <div class="cta">
+      <a id="buyMain" class="btn" target="_blank" rel="noopener">Buy Now!</a>
+      <a id="joinTg" class="btn btn--ghost" target="_blank" rel="noopener">Join Telegram</a>
+    </div>
+    <div class="contract">
+      <span class="label">Pump.fun Contract:</span>
+      <code id="contractText">So11111111111111111111111111111111111111112</code>
+      <button id="copyBtn" class="copy">Copy</button>
+      <span id="copiedToast" class="copied" aria-live="polite">Copied!</span>
+    </div>
+  </section>
   <section id="why" class="section">
     <h2>Why MimiMoons?</h2>
     <div class="cards">
-      <div class="card">
-        <div class="icon">🚀</div>
-        <h3>Community First</h3>
-        <p>Organic growth, meme power, and a builder‑core that never sleeps.</p>
-      </div>
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Lightning Fast</h3>
-        <p>Powered by Solana — ultra‑low fees and near‑instant finality.</p>
-      </div>
-      <div class="card">
-        <div class="icon">💰</div>
-        <h3>Zero Tax</h3>
-        <p>Fair launch, 0 / 0 forever. No hidden fees, no surprises.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🌌</div>
-        <h3>Cosmic Branding</h3>
-        <p>Luxury gold accents, futuristic visuals, and a memorable mascot.</p>
-      </div>
+      <article class="card"><h3>Community First</h3><p>Organic growth with meme power and relentless builders.</p></article>
+      <article class="card"><h3>Solana Fast</h3><p>Ultra‑low fees & near‑instant finality for smooth trading.</p></article>
+      <article class="card"><h3>0/0 Tax</h3><p>Fair launch, forever zero tax — no hidden fees.</p></article>
+      <article class="card"><h3>Cosmic Branding</h3><p>Luxury gold visuals + memorable mascot for virality.</p></article>
     </div>
   </section>
-
-  <!-- TOKENOMICS -->
   <section id="tokenomics" class="section alt">
     <h2>Tokenomics</h2>
-    <div class="tok-row">
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Total Supply</h4>
-          <p>1,000,000,000 MIMI</p>
-        </div>
-      </div>
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Tax</h4>
-          <p>0 / 0</p>
-        </div>
-      </div>
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Network</h4>
-          <p>Solana (Pump.fun)</p>
-        </div>
-      </div>
-      <div class="tok">
-        <div class="tok-ring"></div>
-        <div class="tok-text">
-          <h4>Liquidity</h4>
-          <p>Locked 🔒</p>
-        </div>
-      </div>
+    <div class="token">
+      <div class="tok"><span>Total Supply</span><strong>1,000,000,000</strong></div>
+      <div class="tok"><span>Taxes</span><strong>0% / 0%</strong></div>
+      <div class="tok"><span>Network</span><strong>Solana (Pump.fun)</strong></div>
+      <div class="tok"><span>Liquidity</span><strong>Locked 🔒</strong></div>
     </div>
   </section>
-
-  <!-- ROADMAP -->
   <section id="roadmap" class="section">
     <h2>The Moon Journey</h2>
     <div class="timeline">
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Launch Prep</h4>
-        <p>Coin launch, website live, social channels opened.</p>
-      </div>
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Atmospheric Entry</h4>
-        <p>Meme missions, creator collabs, early listings.</p>
-      </div>
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Lunar Landing</h4>
-        <p>NFT mini‑drop, partnerships, influencer pushes.</p>
-      </div>
-      <div class="step">
-        <span class="dot"></span>
-        <h4>Beyond the Moon</h4>
-        <p>Ecosystem expansion, quests, and utilities.</p>
-      </div>
+      <div class="step"><h4>Launch Prep</h4><p>Coin launch, website live, socials opened.</p></div>
+      <div class="step"><h4>Atmospheric Entry</h4><p>Meme missions, creator collabs, early listings.</p></div>
+      <div class="step"><h4>Lunar Landing</h4><p>NFT mini‑drop, partnerships, influencer pushes.</p></div>
+      <div class="step"><h4>Beyond the Moon</h4><p>Ecosystem expansion, quests, utilities.</p></div>
     </div>
   </section>
-
-  <!-- COMMUNITY -->
   <section id="community" class="section alt">
     <h2>Community</h2>
-    <p class="sub">Memes, missions and moonshots — be early, be cute.</p>
-    <div class="cta social">
-      <a class="btn" href="#" target="_blank" rel="noopener">Pump.fun</a>
-      <a class="btn ghost" href="#" target="_blank" rel="noopener">Twitter / X</a>
-      <a class="btn ghost" href="#" target="_blank" rel="noopener">Telegram</a>
+    <p class="lead">Memes, missions and moonshots — be early, be cute.</p>
+    <div class="socials">
+      <a id="pumpLink" class="btn" target="_blank" rel="noopener">Pump.fun</a>
+      <a id="xLink" class="btn btn--ghost" target="_blank" rel="noopener">Twitter / X</a>
+      <a id="tgLink" class="btn btn--ghost" target="_blank" rel="noopener">Telegram</a>
     </div>
   </section>
-
   <footer class="footer">
-    <div>© 2025 MimiMoons — The Cutest Coin in the Cosmos • All rights reserved.</div>
+    <small>© 2025 MimiMoons — The Cutest Coin in the Cosmos • All rights reserved.</small>
   </footer>
-
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

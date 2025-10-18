@@ -1,81 +1,9 @@
-// 3D Starfield with perspective + copy-to-clipboard
-const cv = document.getElementById('starfield');
-const cx = cv.getContext('2d');
-let W, H;
-let stars = [];
-let perspective = 400;  // lower = stronger depth
-let speed = 0.4;        // base forward speed
-let mouseX = 0, mouseY = 0;
-
-function resize(){
-  W = cv.width = window.innerWidth;
-  H = cv.height = window.innerHeight;
-  const count = Math.min(800, Math.floor((W*H)/2500)); // number of stars based on area
-  stars = Array.from({length: count}, () => ({
-    x: (Math.random()*2 - 1) * W,
-    y: (Math.random()*2 - 1) * H,
-    z: Math.random()*1000 + 100,
-    r: Math.random()*1.5 + 0.5,
-    a: Math.random()*0.6 + 0.3
-  }));
-}
-window.addEventListener('resize', resize);
-resize();
-
-window.addEventListener('mousemove', (e)=>{
-  // mouse offset for parallax
-  mouseX = (e.clientX / W - 0.5) * 2; // -1..1
-  mouseY = (e.clientY / H - 0.5) * 2;
-});
-
-function draw(){
-  cx.clearRect(0,0,W,H);
-
-  // faint cosmic glow
-  const g = cx.createRadialGradient(W*0.7, H*0.2, 0, W*0.7, H*0.2, Math.max(W,H)*0.8);
-  g.addColorStop(0, 'rgba(26,28,73,0.25)');
-  g.addColorStop(1, 'rgba(26,28,73,0)');
-  cx.fillStyle = g;
-  cx.fillRect(0,0,W,H);
-
-  // starfield
-  cx.fillStyle = '#ffffff';
-  for (let s of stars){
-    s.z -= speed * 2; // move towards camera
-    if (s.z < 1){
-      s.x = (Math.random()*2 - 1) * W;
-      s.y = (Math.random()*2 - 1) * H;
-      s.z = 1000;
-    }
-
-    // perspective projection
-    const k = perspective / (s.z);
-    const px = W/2 + (s.x + mouseX*120) * k;
-    const py = H/2 + (s.y + mouseY*120) * k;
-    const pr = s.r * k * 2;
-
-    if (px < 0 || px > W || py < 0 || py > H) continue;
-
-    cx.globalAlpha = Math.min(1, s.a + (1 - s.z/1000)*0.5);
-    cx.beginPath();
-    cx.arc(px, py, pr, 0, Math.PI*2);
-    cx.fill();
-  }
-
-  requestAnimationFrame(draw);
-}
-draw();
-
-// Copy contract
-const copyBtn = document.getElementById('copyBtn');
-const contractText = document.getElementById('contractText');
-const copiedToast = document.getElementById('copiedToast');
-if (copyBtn){
-  copyBtn.addEventListener('click', async () => {
-    try{
-      await navigator.clipboard.writeText(contractText.textContent.trim());
-      copiedToast.style.opacity = 1;
-      setTimeout(()=> copiedToast.style.opacity = 0, 1200);
-    }catch(e){ alert('Copy failed'); }
-  });
-}
+const cvs=document.getElementById('stars');const ctx=cvs.getContext('2d',{alpha:true});let W,H,DPR,stars=[],t=0,tiltX=0,tiltY=0;
+const PUMP_LINK='https://pump.fun/';const TG_LINK='https://t.me/';const X_LINK='https://x.com/MimiMoonsSOL?t=gKUXygbh4UNRWcvmZHsF5Q&s=09';
+[['pumpLink',PUMP_LINK],['xLink',X_LINK],['tgLink',TG_LINK],['buyTop',PUMP_LINK],['buyMain',PUMP_LINK],['joinTg',TG_LINK]].forEach(([i,u])=>{const e=document.getElementById(i);if(e)e.href=u;});
+function resize(){DPR=Math.max(1,window.devicePixelRatio||1);W=cvs.width=Math.floor(window.innerWidth*DPR);H=cvs.height=Math.floor(window.innerHeight*DPR);cvs.style.width=window.innerWidth+'px';cvs.style.height=window.innerHeight+'px';const n=Math.min(800,Math.max(160,Math.floor((W*H)/24000)));stars=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,z:Math.random()*0.9+0.1,r:Math.random()*1.4+0.5,spd:Math.random()*0.6+0.2}))}
+window.addEventListener('resize',resize);resize();
+function mv(e){const p=e.touches?e.touches[0]:e;const cx=p.clientX-window.innerWidth/2;const cy=p.clientY-window.innerHeight/2;tiltX=cx/(window.innerWidth/2);tiltY=cy/(window.innerHeight/2)}
+window.addEventListener('mousemove',mv,{passive:true});window.addEventListener('touchmove',mv,{passive:true});
+function draw(){t+=0.016;ctx.clearRect(0,0,W,H);const g=ctx.createRadialGradient(W*0.65,H*0.15,0,W*0.65,H*0.15,Math.max(W,H)*0.95);g.addColorStop(0,'rgba(18,30,70,.45)');g.addColorStop(1,'rgba(10,14,36,1)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);for(const s of stars){const px=W/2+(s.x-W/2)+tiltX*(1.2-s.z)*24;let py=s.y+Math.sin((t+s.x*0.0008))*8+tiltY*(1.2-s.z)*24+t*s.spd*16;py=(py%H+H)%H;ctx.globalAlpha=0.65+(1-s.z)*0.45;ctx.beginPath();ctx.arc(px,py,s.r*s.z*DPR,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill()}requestAnimationFrame(draw)}draw();
+const copyBtn=document.getElementById('copyBtn'),contractText=document.getElementById('contractText'),copiedToast=document.getElementById('copiedToast');copyBtn?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(contractText.textContent.trim());if(copiedToast){copiedToast.style.opacity=1;setTimeout(()=>copiedToast.style.opacity=0,1200)}}catch(e){alert('Copy failed')}});
